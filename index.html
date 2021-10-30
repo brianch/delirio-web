@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script type="text/javascript">
+            function loadWords() {
+                $.ajax({
+                    dataType: "text",
+                    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRES81qAwoIZJfiacZO7N5iw0nZ-7gVScmmHb41uJZ6tvZLC8uC-j9BjvKw6LSKF5Kidy_R2fS0alD/pub?output=csv",
+                    method: "GET",
+                    cache: false,
+                })
+                .done(function( data ) {
+                    let data_linebreak = data.replaceAll(",","<br/>");
+                    $( "#spreadsheet" ).html( data_linebreak );
+                });
+            }
+        </script>
+    </head>
+    <body onload="loadWords()">
+        <table id="img" style="margin:auto">
+            <tr>
+                <td><img src="img/blusa-r.jpg"></td>
+                <td><span id="spreadsheet"></span></td>
+            </tr>
+        </div>
+    </body>
+</html>
